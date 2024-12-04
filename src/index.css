@@ -94,3 +94,31 @@ h3 {
   background-color: #fff;
   color: #0000;
 }
+
+.quiz-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  
+}
+
+.btn {
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  border: solid 2px black;
+  border-radius: 5px;
+}
+
+.count {
+  padding-left: 7px;
+  padding-right: 7px;
+}

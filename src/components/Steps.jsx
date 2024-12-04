@@ -16,7 +16,7 @@ const Steps = () => {
   };
 
   const handleClose = () => {
-    setIsOpen(!isOpen)
+    setIsOpen((prev) => !prev)
   }
 
 
