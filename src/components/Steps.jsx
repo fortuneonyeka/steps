@@ -15,12 +15,18 @@ const Steps = () => {
     if (step < 3) setStep((prev) => prev + 1); // Ensure step doesn't go above 3
   };
 
+  const handleClose = () => {
+    setIsOpen(!isOpen)
+  }
+
 
 
 
 
   return (
- <div className="steps">
+<>
+        <button className='close' onClick={handleClose}>{isOpen ? <p>&times;</p>: <p>+</p>}</button>
+{  isOpen ?  <div className="steps">
       <div className="numbers">
       
         {steps.map((num) => (
@@ -51,7 +57,9 @@ const Steps = () => {
           Next
         </button>
       </div>
-    </div> 
+    </div>:null
+}
+</>  
 );
 };
 
