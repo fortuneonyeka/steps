@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
 const Quiz = () => {
-  const [initialState, setInitialState] = useState(0);
+  const [initialState, setInitialState] = useState(1);
   const [rangeInitialState, setRangeInitialState] = useState(1);
-  const [count, setCount] = useState(initialState);
+  const [count, setCount] = useState(initialState - 1);
   const [rangeCount, setRangeCount] = useState(rangeInitialState - 1);
   const [date, setDate] = useState(new Date());
   const [rangeDate, setRangeDate] = useState(new Date());
+  const [isHovered, setIsHovered] = useState(false);
 
   // Handlers for increment and decrement of initialState
   const handleInitialStateInc = () => {
@@ -61,8 +62,14 @@ const Quiz = () => {
     }
   };
 
+  const handleRest = () => {
+    setCount(0)
+    setInitialState(1)
+    setDate(new Date())
+  }
+
   
-  const handleReset = () => {
+  const handleRangeReset = () => {
     setInitialState(0);
     setRangeInitialState(1);
     setCount(0);
@@ -108,6 +115,16 @@ const Quiz = () => {
           )}
         </p>
       </div>
+      <div className="buttons">
+        {
+          count !==0 ||initialState !==1 ?
+          <button style={{
+            backgroundColor: isHovered ? "red" : "purple",
+            transition: "background-color 0.3s", color:"white"
+          }} onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)} onClick={handleRest}>Reset</button> : null
+        }
+      </div>
       <hr className="hr"/>
 
       {/* Range Input Controls */}
@@ -140,8 +157,10 @@ const Quiz = () => {
         )}
       </p>
       <div className="buttons">
-
-      <button  className="button-reset" onClick={handleReset}>Reset</button>
+        {
+          rangeCount !==0 || rangeInitialState !==1 ?
+      <button  className="button-reset" onClick={handleRangeReset}>Reset</button> : null
+        }
       </div>
     </div>
   );
