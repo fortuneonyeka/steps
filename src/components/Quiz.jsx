@@ -44,7 +44,7 @@ const Quiz = () => {
   const handleRangeCountMinus = () => {
     setRangeCount((prev) => prev - rangeInitialState);
     const newDate = new Date(rangeDate);
-    newDate.setRangeDate(newDate.getDate() - rangeInitialState);
+    newDate.setDate(newDate.getDate() - rangeInitialState);
     setRangeDate(newDate);
   };
 
