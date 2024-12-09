@@ -61,6 +61,19 @@ const Quiz = () => {
     }
   };
 
+  
+  const handleReset = () => {
+    setInitialState(0);
+    setRangeInitialState(1);
+    setCount(0);
+    setRangeCount(0);
+    setDate(new Date());
+    setRangeDate(new Date());
+  };
+  
+  
+  
+
   return (
     <div className="quiz-cont">
      
@@ -126,6 +139,10 @@ const Quiz = () => {
           <span>{`${rangeCount} from today is ${rangeDate.toDateString()}`}</span>
         )}
       </p>
+      <div className="buttons">
+
+      <button  className="button-reset" onClick={handleReset}>Reset</button>
+      </div>
     </div>
   );
 };

@@ -127,3 +127,15 @@ h3 {
   border: solid 5px black;
   width: 100%;
 }
+
+.button-reset {
+  background-color: purple;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.button-reset:hover {
+  background-color: red;
+  color: black;
+}
+
