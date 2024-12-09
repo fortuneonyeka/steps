@@ -122,3 +122,8 @@ h3 {
   padding-left: 7px;
   padding-right: 7px;
 }
+
+.hr {
+  border: solid 5px black;
+  width: 100%;
+}
