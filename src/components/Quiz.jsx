@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "./button/Button";
 
 const Quiz = () => {
   const [initialState, setInitialState] = useState(1);
@@ -85,24 +86,22 @@ const Quiz = () => {
     <div className="quiz-cont">
      
       <div className="flex">
-        <p className="btn" onClick={handleInitialStateMinus}>
-          -
-        </p>
+        <Button className="btn" onclick={handleInitialStateMinus} text="-"/>
+          
+       
         <p className="count">Step: {initialState}</p>
-        <p className="btn" onClick={handleInitialStateInc}>
-          +
-        </p>
+        <Button className="btn" onclick={handleInitialStateInc}text="+" />
+          
+       
       </div>
 
      
       <div className="flex">
-        <p className="btn" onClick={handleCountMinus}>
-          -
-        </p>
+        <Button className="btn" onclick={handleCountMinus} text="-"/>
+    
         <p className="count">Count: {count}</p>
-        <p className="btn" onClick={handleCountInc}>
-          +
-        </p>
+        <Button className="btn" onclick={handleCountInc}  text="+"/>
+        
       </div>
 
      
@@ -139,14 +138,13 @@ const Quiz = () => {
         /> <p>{rangeInitialState}</p>
         </div>
       <div className="flex">
-        <p className="btn" onClick={handleRangeCountMinus}>
-          -
-        </p>
+        <Button className="btn" onclick={handleRangeCountMinus} text="-"/>
+        
         <input type="text" value={rangeCount} onChange={handleRangeCountChange}/>
         <p className="count">Range Count: {rangeCount}</p>
-        <p className="btn" onClick={handleRangeCountInc}>
-          +
-        </p>
+        <Button className="btn" onclick={handleRangeCountInc} text="+"/>
+  
+        
       </div>
 
       <p>
@@ -159,7 +157,7 @@ const Quiz = () => {
       <div className="buttons">
         {
           rangeCount !==0 || rangeInitialState !==1 ?
-      <button  className="button-reset" onClick={handleRangeReset}>Reset</button> : null
+      <Button  className="button-reset" onclick={handleRangeReset}text="Reset" /> : null
         }
       </div>
     </div>

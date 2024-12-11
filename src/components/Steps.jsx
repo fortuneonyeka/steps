@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { messages } from '../messages';
 import "../index.css";
+import Button from './button/Button';
 
 const Steps = () => {
   const [step, setStep] = useState(1); // Start at step 1 (assuming steps start from 1)
@@ -25,7 +26,8 @@ const Steps = () => {
 
   return (
 <>
-        <button className='close' onClick={handleClose}>{isOpen ? <p>&times;</p>: <p>+</p>}</button>
+        
+        <Button className='close' style={{fontSize:"30px"}} onclick={handleClose} content={isOpen ? <p>&times;</p> : <p>+</p>}/>
 {  isOpen ?  <div className="steps">
       <div className="numbers">
       
@@ -38,24 +40,28 @@ const Steps = () => {
       <p className="message">Step {step}: {messages[step - 1]}</p>
 
       <div className="buttons">
-        <button
+        <Button
           style={{ backgroundColor:step === 1 ? "#d3d3d3" : "#7950f2", color: "#fff", 
             cursor: step === 1 ? "not-allowed" : "pointer"
           }}
-          onClick={handlePrevious}
-          disabled={step === 1} // Disable if already on the first step
-        >
-          Previous
-        </button>
-        <button
+          onclick={handlePrevious}
+          disabled={step === 1} 
+          text="Previous"// Disable if already on the first step
+        />
+         
+       
+        
+        <Button
           style={{ backgroundColor: step === 3 ? "#d3d3d3" : "#7950f2", color: "#fff", 
             cursor: step === 3 ? "not-allowed" : "pointer"
           }}
-          onClick={handleNext}
-          disabled={step === 3} // Disable if already on the last step
-        >
-          Next
-        </button>
+          
+          disabled={step === 3}
+          text="Next" onclick ={handleNext}
+        />
+      
+        
+        
       </div>
     </div>:null
 }
