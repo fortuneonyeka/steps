@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { messages } from "../messages";
 import "../index.css";
-import Button from "./button/Button";
+import Button from "./reuseables/Button";
+import StepsContent from "./reuseables/StepsContent";
 
 const Steps = () => {
   const [step, setStep] = useState(1); // Start at step 1 (assuming steps start from 1)
@@ -37,9 +38,10 @@ const Steps = () => {
               </div>
             ))}
           </div>
-          <p className="message">
-            Step {step}: {messages[step - 1]}
-          </p>
+          {/* <p className="message"> */}
+            {/* Step {step}: {messages[step - 1]} */}
+          {/* </p> */}
+          <StepsContent className="message" text="Step"> {step}: {messages[step-1]}</StepsContent>
 
           <div className="buttons">
             <Button
@@ -61,7 +63,7 @@ const Steps = () => {
               }}
               disabled={step === 3}
               onclick={handleNext}>
-              Next  <span>⏭</span>
+              Next <span>⏭</span>
             </Button>
           </div>
         </div>

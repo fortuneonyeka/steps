@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Button from "./button/Button";
+import Button from "./reuseables/Button";
+import StepsContent from "./reuseables/StepsContent";
 
 const Quiz = () => {
   const [initialState, setInitialState] = useState(1);
@@ -19,7 +20,6 @@ const Quiz = () => {
     if (initialState > 1) setInitialState((prev) => prev - 1);
   };
 
-  
   // Handlers for increment and decrement of count
   const handleCountInc = () => {
     setCount((prev) => prev + initialState);
@@ -50,13 +50,11 @@ const Quiz = () => {
     setRangeDate(newDate);
   };
 
-
   const handleRangeCountChange = (e) => {
     const newValue = Number(e.target.value);
     if (!isNaN(newValue)) {
       setRangeCount(newValue);
 
-      
       const newDate = new Date();
       newDate.setDate(newDate.getDate() + newValue);
       setRangeDate(newDate);
@@ -64,12 +62,11 @@ const Quiz = () => {
   };
 
   const handleRest = () => {
-    setCount(0)
-    setInitialState(1)
-    setDate(new Date())
-  }
+    setCount(0);
+    setInitialState(1);
+    setDate(new Date());
+  };
 
-  
   const handleRangeReset = () => {
     setInitialState(0);
     setRangeInitialState(1);
@@ -78,87 +75,90 @@ const Quiz = () => {
     setDate(new Date());
     setRangeDate(new Date());
   };
-  
-  
-  
 
   return (
     <div className="quiz-cont">
-     
       <div className="flex">
-        <Button className="btn" onclick={handleInitialStateMinus} text="-"/>
-          
-       
-        <p className="count">Step: {initialState}</p>
-        <Button className="btn" onclick={handleInitialStateInc}text="+" />
-          
-       
+        <Button className="btn" onclick={handleInitialStateMinus} text="-" />
+
+        {/* <p className="count">Step: {initialState}</p> */}
+        <StepsContent className="count" text="Step">{initialState}</StepsContent>
+        <Button className="btn" onclick={handleInitialStateInc} text="+" />
       </div>
 
-     
       <div className="flex">
-        <Button className="btn" onclick={handleCountMinus} text="-"/>
-    
-        <p className="count">Count: {count}</p>
-        <Button className="btn" onclick={handleCountInc}  text="+"/>
-        
+        <Button className="btn" onclick={handleCountMinus} text="-" />
+
+        <StepsContent className="count" text="Count">{count}</StepsContent>
+        <Button className="btn" onclick={handleCountInc} text="+" />
       </div>
 
-     
       <div>
         <p>
           {count === 0 ? (
             <span>Today is {date.toDateString()}</span>
           ) : (
-            <span>{`${count} from today is ${date.toDateString()}`}</span>
+           
+            <StepsContent><span>{`${count} from today is ${date.toDateString()}`}</span></StepsContent>
           )}
         </p>
       </div>
       <div className="buttons">
-        {
-          count !==0 ||initialState !==1 ?
-          <button style={{
-            backgroundColor: isHovered ? "red" : "purple",
-            transition: "background-color 0.3s", color:"white"
-          }} onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)} onClick={handleRest}>Reset</button> : null
-        }
+        {count !== 0 || initialState !== 1 ? (
+          <button
+            style={{
+              backgroundColor: isHovered ? "red" : "purple",
+              transition: "background-color 0.3s",
+              color: "white",
+            }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onClick={handleRest}>
+            Reset
+          </button>
+        ) : null}
       </div>
-      <hr className="hr"/>
+      <hr className="hr" />
 
       {/* Range Input Controls */}
       <div className="flex">
-
-      <input
-        type="range"
-        min="1"
-        max="10"
-        value={rangeInitialState}
-        onChange={(e) => setRangeInitialState(Number(e.target.value))}
-        /> <p>{rangeInitialState}</p>
-        </div>
+        <input
+          type="range"
+          min="1"
+          max="10"
+          value={rangeInitialState}
+          onChange={(e) => setRangeInitialState(Number(e.target.value))}
+        />{" "}
+        <p>{rangeInitialState}</p>
+      </div>
       <div className="flex">
-        <Button className="btn" onclick={handleRangeCountMinus} text="-"/>
-        
-        <input type="text" value={rangeCount} onChange={handleRangeCountChange}/>
+        <Button className="btn" onclick={handleRangeCountMinus} text="-" />
+
+        <input
+          type="text"
+          value={rangeCount}
+          onChange={handleRangeCountChange}
+        />
         <p className="count">Range Count: {rangeCount}</p>
-        <Button className="btn" onclick={handleRangeCountInc} text="+"/>
-  
-        
+        <Button className="btn" onclick={handleRangeCountInc} text="+" />
       </div>
 
       <p>
         {rangeCount === 0 ? (
-          <span>Today is {rangeDate.toDateString()}</span>
+          
+          <StepsContent><span>Today is {rangeDate.toDateString()}</span></StepsContent>
         ) : (
           <span>{`${rangeCount} from today is ${rangeDate.toDateString()}`}</span>
         )}
       </p>
       <div className="buttons">
-        {
-          rangeCount !==0 || rangeInitialState !==1 ?
-      <Button  className="button-reset" onclick={handleRangeReset}text="Reset" /> : null
-        }
+        {rangeCount !== 0 || rangeInitialState !== 1 ? (
+          <Button
+            className="button-reset"
+            onclick={handleRangeReset}
+            text="Reset"
+          />
+        ) : null}
       </div>
     </div>
   );
