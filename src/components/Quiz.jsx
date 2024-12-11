@@ -9,7 +9,7 @@ const Quiz = () => {
   const [rangeCount, setRangeCount] = useState(rangeInitialState - 1);
   const [date, setDate] = useState(new Date());
   const [rangeDate, setRangeDate] = useState(new Date());
-  const [isHovered, setIsHovered] = useState(false);
+ 
 
   // Handlers for increment and decrement of initialState
   const handleInitialStateInc = () => {
@@ -99,23 +99,16 @@ const Quiz = () => {
             <span>Today is {date.toDateString()}</span>
           ) : (
            
-            <StepsContent><span>{`${count} from today is ${date.toDateString()}`}</span></StepsContent>
+            <StepsContent days="day(s)" count={count} ><span>{`from today is ${date.toDateString()}`}</span></StepsContent>
           )}
         </p>
       </div>
       <div className="buttons">
         {count !== 0 || initialState !== 1 ? (
-          <button
-            style={{
-              backgroundColor: isHovered ? "red" : "purple",
-              transition: "background-color 0.3s",
-              color: "white",
-            }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            onClick={handleRest}>
-            Reset
-          </button>
+          <Button
+            onclick={handleRest} text="Reset" className="button-reset"/>
+            
+          
         ) : null}
       </div>
       <hr className="hr" />
@@ -139,16 +132,18 @@ const Quiz = () => {
           value={rangeCount}
           onChange={handleRangeCountChange}
         />
-        <p className="count">Range Count: {rangeCount}</p>
+        
+        <StepsContent className="count" text="Range Count :">{rangeCount}</StepsContent>
         <Button className="btn" onclick={handleRangeCountInc} text="+" />
       </div>
 
       <p>
         {rangeCount === 0 ? (
           
-          <StepsContent><span>Today is {rangeDate.toDateString()}</span></StepsContent>
+          <StepsContent text="Today is"><span> {rangeDate.toDateString()}</span></StepsContent>
         ) : (
-          <span>{`${rangeCount} from today is ${rangeDate.toDateString()}`}</span>
+         
+          <StepsContent days="day(s)" text="from today is" rangeCount={rangeCount}><span>{`${rangeDate.toDateString()}`}</span></StepsContent>
         )}
       </p>
       <div className="buttons">
